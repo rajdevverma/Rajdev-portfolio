@@ -1,0 +1,285 @@
+/* Root colors */
+:root {
+  --primary: #00c6ff;
+  --secondary: #0072ff;
+  --accent: #ff6a00;
+  --bg-light: #1a2639;
+  --bg-dark: #121212;
+  --text-light: #fff;
+  --text-dark: #333;
+  --card-light: rgba(255, 255, 255, 0.85);
+  --card-dark: rgba(30, 30, 30, 0.85);
+  --gradient: linear-gradient(135deg, #00c6ff, #0072ff, #ff6a00);
+}
+#animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2; /* behind all content */
+  background: linear-gradient(135deg, #00c6ff, #0072ff, #ff6a00);
+}
+
+/* Body & Particle Background */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  scroll-behavior: smooth;
+  transition: all 0.5s;
+  overflow-x: hidden;
+}
+
+/* Gradient Animation for Buttons */
+@keyframes gradientAnimation {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-light);
+}
+
+#particles {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -1;
+  background: radial-gradient(circle at 20% 20%, #00c6ff33, transparent),
+              radial-gradient(circle at 80% 80%, #ff6a0033, transparent);
+  animation: moveParticles 30s linear infinite;
+}
+@keyframes moveParticles {
+  0% { background-position: 0 0, 100% 100%; }
+  50% { background-position: 50% 50%, 50% 50%; }
+  100% { background-position: 0 0, 100% 100%; }
+}
+
+/* Navbar */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 15px;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+nav a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 30px;
+  transition: all 0.3s;
+}
+nav a:hover, nav a.active {
+  background: var(--gradient);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* Toggle Button */
+.toggle-btn {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 1100;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+body.dark .toggle-btn { background: #222; color: #fff; }
+
+/* Header */
+/* Social Links Container */
+header .social-links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Social Links Buttons */
+header .social-links a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #fff; /* default color, overridden per logo */
+  padding: 6px 12px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Individual Social Icon */
+header .social-links a .social-icon {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.3s ease;
+}
+
+/* Hover Animation */
+header .social-links a:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+}
+
+/* Color per Platform */
+header .social-links a[href*="linkedin"] {
+  color: #0A66C2; /* LinkedIn blue */
+}
+header .social-links a[href*="github"] {
+  color: #fff; /* GitHub white */
+}
+
+/* Icon Glow Animation */
+header .social-links a:hover .social-icon {
+  transform: scale(1.2) rotate(10deg);
+  filter: drop-shadow(0 0 6px rgba(0,198,255,0.6)); /* subtle glow for LinkedIn */
+}
+header .social-links a[href*="github"]:hover .social-icon {
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.8)); /* subtle glow for GitHub */
+}
+
+header {
+  text-align: center;
+  padding: 120px 20px 50px;
+  position: relative;
+}
+header .typing {
+  font-size: 2.5rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #00c6ff, #0072ff, #ff6a00);
+
+  -webkit-text-fill-color: transparent;
+  animation: typing 4s steps(22) infinite alternate;
+}
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+header .subtitle {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: #888;
+}
+header .social-links a {
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--primary);
+  transition: color 0.3s;
+}
+header .social-links a:hover { color: var(--accent); }
+
+header .profile-img {
+  width: 140px;
+  border-radius: 50%;
+  border: 4px solid white;
+  margin-top: 20px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+  transition: transform 0.4s;
+}
+header .profile-img:hover { transform: scale(1.1) rotate(6deg); }
+
+/* Container & Sections */
+.container {
+  width: 85%;
+  margin: auto;
+}
+section {
+  margin: 60px auto; /* slightly smaller margin for comfort */
+  padding: 30px 25px; /* comfortable padding, horizontal and vertical */
+  max-width: 1000px; /* limits width for readability */
+  border-radius: 25px; /* slightly more rounded corners */
+  background: rgba(255, 255, 255, 0.1); /* transparent light background */
+  backdrop-filter: blur(15px); /* soft glass effect */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* subtle shadow */
+  opacity: 0;
+  transform: translateY(30px); /* softer entrance */
+  transition: all 0.6s ease-in-out;
+  animation: fadeUp 1s forwards;
+}
+
+/* Dark mode */
+body.dark section {
+  background: rgba(30, 30, 30, 0.6); /* darker transparent card */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Fade-up animation */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+body.dark section { background: var(--card-dark); }
+section:nth-child(1) { animation-delay: 0.4s; }
+section:nth-child(2) { animation-delay: 0.8s; }
+section:nth-child(3) { animation-delay: 1.2s; }
+section:nth-child(4) { animation-delay: 1.6s; }
+section:nth-child(5) { animation-delay: 2s; }
+
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+h2 {
+  color: var(--primary);
+  margin-bottom: 18px;
+  position: relative;
+}
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--gradient);
+  border-radius: 3px;
+}
+
+ul { list-style: none; padding: 0; }
+ul li {
+  padding: 10px 0;
+  transition: all 0.3s;
+}
+ul li:hover { transform: translateX(10px); color: var(--accent); }
+
+/* Resume Button */
+.resume-btn {
+  background: linear-gradient(135deg, #00c6ff, #0072ff, #ff6a00);
+  color: #fff;
+  font-weight: bold;
+  transition: transform 0.3s, box-shadow 0.3s;
+  padding: 8px 20px;
+}
+.resume-btn:hover { transform: scale(1.1); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container { width: 95%; }
+  nav { flex-wrap: wrap; }
+  header .typing { font-size: 2rem; }
+}
